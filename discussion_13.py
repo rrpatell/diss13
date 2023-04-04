@@ -40,7 +40,12 @@ def add_employee(filename, cur, conn):
 
 # TASK 2: GET JOB AND HIRE_DATE INFORMATION
 def job_and_hire_date(cur, conn):
-    pass
+    output = []
+    cur.execute("SELECT employees.hire_date, jobs.job_title FROM employees JOIN jobs on employees.job_id=jobs.job_id")
+    for row in cur:
+        output.append((row[0], row[1]))
+    output = sorted(output)
+    return output[1]
 
 # TASK 3: IDENTIFY PROBLEMATIC SALARY DATA
 # Apply JOIN clause to match individual employees
